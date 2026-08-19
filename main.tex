@@ -36,48 +36,16 @@
 ]
 
 \begin{abstract}
-Suppose a learner may train the empirical mean on two optimally selected
-examples, with repetition, and is evaluated by squared loss on the full
-dataset. How much worse can this be than the full mean? This is the first open
-column in a recent data-selection problem. We determine the exact answer in
-every dimension:
-\[
- F(d,2)=1+\max\left\{\frac13,\frac{d-1}{2d}\right\}.
-\]
-Thus the sharp factor is $4/3$ for $d\leq3$ and
-$(3d-1)/(2d)$ for $d\geq4$. The two branches reveal distinct obstructions.
-A rare point on a line forces the dimension-free term, while a uniform regular
-simplex forces the dimension term.
+Suppose a learner may train the empirical mean on two optimally selected examples, with repetition, and is evaluated by squared loss on the full dataset. How much worse can this be than the full mean? This is the first open column in a recent data-selection problem. We determine the exact answer in every dimension: \[ F(d,2)=1+\max\left\{\frac13,\frac{d-1}{2d}\right\}. \] Thus the sharp factor is $4/3$ for $d\leq3$ and $(3d-1)/(2d)$ for $d\geq4$. The two branches reveal distinct obstructions. A rare point on a line forces the dimension-free term, while a uniform regular simplex forces the dimension term.
 
-The proof gives a stronger convex-geometric theorem for distributions on at
-most $m$ atoms. Its key step is an explicit antithetic distribution over
-pairs. If one atom has mass at least $1/4$, a star coupling has exactly one
-third of the original second moment. Otherwise, a complete-graph coupling has
-a closed-form second moment, and a single Jensen inequality proves that
-uniform weights are worst. A variance-minimizing Carath\'eodory reduction then
-transfers the result to arbitrary finite datasets. This resolves all cases
-with selection budget two, supplies a short proof of the previously isolated
-planar case, and separates variance-normalized data selection from
-radius-normalized approximate Carath\'eodory bounds.
+The proof gives a stronger convex-geometric theorem for distributions on at most $m$ atoms. Its key step is an explicit antithetic distribution over pairs. If one atom has mass at least $1/4$, a star coupling has exactly one third of the original second moment. Otherwise, a complete-graph coupling has a closed-form second moment, and a single Jensen inequality proves that uniform weights are worst. A variance-minimizing Carath\'eodory reduction then transfers the result to arbitrary finite datasets. This resolves all cases with selection budget two, supplies a short proof of the previously isolated planar case, and separates variance-normalized data selection from radius-normalized approximate Carath\'eodory bounds.
 \end{abstract}
 
 \section{Introduction}
 
-Data selection asks what a fixed learning rule can achieve when an informed
-teacher chooses a small training set from a larger population. This viewpoint
-appears in machine teaching, sample compression, and coreset construction
-\citep{dasgupta2019teaching,feldman2020coresets,hanneke2025selection}. Even
-the most elementary regression rule leaves a sharp geometric question open.
+Data selection asks what a fixed learning rule can achieve when an informed teacher chooses a small training set from a larger population. This viewpoint appears in machine teaching, sample compression, and coreset construction \citep{dasgupta2019teaching,feldman2020coresets,hanneke2025selection}. Even the most elementary regression rule leaves a sharp geometric question open.
 
-Let $D=\{z_1,\ldots,z_N\}$ be a finite multiset in $\R^d$. For squared loss,
-write
-\[
- L_D(h)=\frac1N\sum_{i=1}^N\|h-z_i\|^2,
- \qquad L_D^*=\min_h L_D(h).
-\]
-The minimizer is the full mean $\mu_D=N^{-1}\sum_i z_i$. If the rule receives
-only $n$ examples, it returns their equal-weight average. Repetitions are
-allowed, as in the original formulation. Define
+Let $D=\{z_1,\ldots,z_N\}$ be a finite multiset in $\R^d$. For squared loss, write \[ L_D(h)=\frac1N\sum_{i=1}^N\|h-z_i\|^2, \qquad L_D^*=\min_h L_D(h). \] The minimizer is the full mean $\mu_D=N^{-1}\sum_i z_i$. If the rule receives only $n$ examples, it returns their equal-weight average. Repetitions are allowed, as in the original formulation. Define
 \begin{align*}
  L_D^*(n)&=\min_{x_1,\ldots,x_n\in D}
  L_D\left(\frac1n\sum_{j=1}^n x_j\right),\\
@@ -85,16 +53,7 @@ allowed, as in the original formulation. Define
 \end{align*}
 The ratio is set to one for a constant dataset.
 
-\citet{hanneke2025selection} proved
-\[
- F(1,n)=\frac{2n}{2n-1},
- \qquad
- \frac{2n}{2n-1}\leq F(d,n)\leq\frac{n+1}{n},
-\]
-and showed that the upper bound is approached as $d$ grows. Their COLT open
-problem records only one additional finite-dimensional value,
-$F(2,2)=4/3$, obtained by a computational geometric argument
-\citep{hanneke2025open}. Every other entry with $d,n>1$ was left open.
+\citet{hanneke2025selection} proved \[ F(1,n)=\frac{2n}{2n-1}, \qquad \frac{2n}{2n-1}\leq F(d,n)\leq\frac{n+1}{n}, \] and showed that the upper bound is approached as $d$ grows. Their COLT open problem records only one additional finite-dimensional value, $F(2,2)=4/3$, obtained by a computational geometric argument \citep{hanneke2025open}. Every other entry with $d,n>1$ was left open.
 
 We close the full $n=2$ column.
 
@@ -119,20 +78,12 @@ $F(d,2)$ & $4/3$ & $4/3$ & $4/3$ & $11/8$ & $7/5$ & $3/2$\\
 \end{tabular}
 \end{center}
 
-The formula is the maximum of two qualitatively different lower bounds. Four
-points on a line, three at zero and one at one, force excess risk $1/3$.
-The uniform distribution on a regular $d$-simplex forces excess risk
-$(d-1)/(2d)$. Their crossover at $d=3$ explains why extrapolating from the
-known planar answer misses the higher-dimensional behavior.
+The formula is the maximum of two qualitatively different lower bounds. Four points on a line, three at zero and one at one, force excess risk $1/3$. The uniform distribution on a regular $d$-simplex forces excess risk $(d-1)/(2d)$. Their crossover at $d=3$ explains why extrapolating from the known planar answer misses the higher-dimensional behavior.
 
-Our main technical result is stronger than Theorem~\ref{thm:main}. It gives
-the exact constant as a function of the number of atoms, independent of the
-ambient Hilbert space.
+Our main technical result is stronger than Theorem~\ref{thm:main}. It gives the exact constant as a function of the number of atoms, independent of the ambient Hilbert space.
 
 \begin{theorem}[Sharp atomic theorem]\label{thm:atomic}
-Let $m\geq2$. Let $X$ be a finitely supported random vector in a real Hilbert space, with
-$\E X=0$, $0<\E\|X\|^2<\infty$, and $|\supp(X)|\leq m$. Then there are
-$x,y\in\supp(X)$, possibly equal, such that
+Let $m\geq2$. Let $X$ be a finitely supported random vector in a real Hilbert space, with $\E X=0$, $0<\E\|X\|^2<\infty$, and $|\supp(X)|\leq m$. Then there are $x,y\in\supp(X)$, possibly equal, such that
 \begin{align}\label{eq:atomic}
  \left\|\frac{x+y}{2}\right\|^2
  &\leq C_m\E\|X\|^2,\\
@@ -141,11 +92,7 @@ $x,y\in\supp(X)$, possibly equal, such that
 The constant is optimal for every $m\geq2$.
 \end{theorem}
 
-The proof is constructive at the level of a randomized certificate. It does
-not sample two independent observations. Instead it builds an antithetic pair
-whose average has the sharp second moment. This distinction is essential.
-Independent sampling gives only $1/2$, which corresponds to the previously
-known dimension-free bound $F(d,2)\leq3/2$.
+The proof is constructive at the level of a randomized certificate. It does not sample two independent observations. Instead it builds an antithetic pair whose average has the sharp second moment. This distinction is essential. Independent sampling gives only $1/2$, which corresponds to the previously known dimension-free bound $F(d,2)\leq3/2$.
 
 \section{Risk and Atomic Reduction}\label{sec:reduction}
 
@@ -153,54 +100,25 @@ The squared-loss identity
 \begin{equation}\label{eq:biasvariance}
  L_D(h)=L_D^*+\|h-\mu_D\|^2
 \end{equation}
-turns the problem into equal-weight mean approximation. After translating by
-$\mu_D$ and normalizing $L_D^*=1$, it is enough to find two data points whose
-midpoint has squared norm at most the claimed excess factor.
+turns the problem into equal-weight mean approximation. After translating by $\mu_D$ and normalizing $L_D^*=1$, it is enough to find two data points whose midpoint has squared norm at most the claimed excess factor.
 
-The following standard reduction makes support size, rather than dataset
-size, the relevant parameter. We include the argument because preserving the
-variance direction is important here.
+The following standard reduction makes support size, rather than dataset size, the relevant parameter. We include the argument because preserving the variance direction is important here.
 
 \begin{lemma}[Variance-minimizing reduction]\label{lem:reduction}
-Let $D\subset\R^d$ be a finite multiset with mean $\mu$ and variance $V$.
-There is a probability distribution $P$ supported on at most $r+1$ points of
-$D$, where $r$ is the affine dimension of $D$, such that
-\[
- \E_P X=\mu,
- \qquad
- \E_P\|X-\mu\|^2\leq V.
-\]
+Let $D\subset\R^d$ be a finite multiset with mean $\mu$ and variance $V$. There is a probability distribution $P$ supported on at most $r+1$ points of $D$, where $r$ is the affine dimension of $D$, such that \[ \E_P X=\mu, \qquad \E_P\|X-\mu\|^2\leq V. \]
 \end{lemma}
 
 \paragraph{Proof.}
-Minimize $\sum_i p_i\|z_i-\mu\|^2$ subject to $p_i\geq0$,
-$\sum_i p_i=1$, and $\sum_i p_i z_i=\mu$. The uniform weights are feasible.
-An extreme optimal solution has at most $r+1$ positive coordinates because
-there are $r+1$ independent affine constraints. \hfill$\square$
+Minimize $\sum_i p_i\|z_i-\mu\|^2$ subject to $p_i\geq0$, $\sum_i p_i=1$, and $\sum_i p_i z_i=\mu$. The uniform weights are feasible. An extreme optimal solution has at most $r+1$ positive coordinates because there are $r+1$ independent affine constraints. \hfill$\square$
 
-Any pair selected from the reduced support is also available in the original
-dataset. Therefore, a bound relative to the reduced variance is at least as
-strong as the same bound relative to $V$. Lemma~\ref{lem:reduction} and
-Theorem~\ref{thm:atomic} immediately give the upper bound in
-Theorem~\ref{thm:main}, since $m\leq d+1$ and $C_m$ is nondecreasing in $m$.
+Any pair selected from the reduced support is also available in the original dataset. Therefore, a bound relative to the reduced variance is at least as strong as the same bound relative to $V$. Lemma~\ref{lem:reduction} and Theorem~\ref{thm:atomic} immediately give the upper bound in Theorem~\ref{thm:main}, since $m\leq d+1$ and $C_m$ is nondecreasing in $m$.
 
 \subsection{A finite minimax formulation}
 
-The reduction exposes a small semidefinite game. Fix positive masses
-$p\in\R^m$ and let $\mathcal Q_2$ contain the empirical frequency vectors
-$e_i$ and $(e_i+e_j)/2$. Put $D_p=\operatorname{diag}(p)$,
-$s=\sqrt p$, and
-\[
- u_q=D_p^{-1/2}(q-p)\in s^\perp.
-\]
-Every centered geometry with unit variance has a Gram matrix $G$ satisfying
-$G\succeq0$, $Gp=0$, and $\operatorname{tr}(D_pG)=1$. Equivalently,
-$B=D_p^{1/2}GD_p^{1/2}$ is positive semidefinite on $s^\perp$ and has trace
-one. Its squared mean error at $q$ is $u_q^\top B u_q$.
+The reduction exposes a small semidefinite game. Fix positive masses $p\in\R^m$ and let $\mathcal Q_2$ contain the empirical frequency vectors $e_i$ and $(e_i+e_j)/2$. Put $D_p=\operatorname{diag}(p)$, $s=\sqrt p$, and \[ u_q=D_p^{-1/2}(q-p)\in s^\perp. \] Every centered geometry with unit variance has a Gram matrix $G$ satisfying $G\succeq0$, $Gp=0$, and $\operatorname{tr}(D_pG)=1$. Equivalently, $B=D_p^{1/2}GD_p^{1/2}$ is positive semidefinite on $s^\perp$ and has trace one. Its squared mean error at $q$ is $u_q^\top B u_q$.
 
 \begin{proposition}[Pair minimax duality]\label{prop:minimax}
-For a fixed positive mass vector $p$, the worst normalized pair error over all
-Hilbert-space configurations is
+For a fixed positive mass vector $p$, the worst normalized pair error over all Hilbert-space configurations is
 \begin{align}\label{eq:minimax}
  R(p)
  &=\max_{\substack{B\succeq0,\ Bs=0\\\operatorname{tr}B=1}}
@@ -213,52 +131,35 @@ Hilbert-space configurations is
 \end{proposition}
 
 \paragraph{Proof.}
-Replace the finite minimum by a minimum over distributions $\lambda$ on
-$\mathcal Q_2$. The objective is bilinear in $B$ and $\lambda$, so finite
-dimensional minimax duality swaps max and min. Maximizing
-$\operatorname{tr}(BM)$ over positive semidefinite trace-one matrices on
-$s^\perp$ returns the largest eigenvalue of $M$ on that subspace.
-\hfill$\square$
+Replace the finite minimum by a minimum over distributions $\lambda$ on $\mathcal Q_2$. The objective is bilinear in $B$ and $\lambda$, so finite dimensional minimax duality swaps max and min. Maximizing $\operatorname{tr}(BM)$ over positive semidefinite trace-one matrices on $s^\perp$ returns the largest eigenvalue of $M$ on that subspace. \hfill$\square$
 
-Independent sampling from $p$ makes the second moment in
-\eqref{eq:minimax} equal to $(1/2)I$ on $s^\perp$. This recovers excess
-$1/2$. The proof below constructs a dependent distribution $\lambda$ with a
-strictly smaller spectral second moment. The construction depends only on
-$p$, not on the geometry $G$.
+Independent sampling from $p$ makes the second moment in \eqref{eq:minimax} equal to $(1/2)I$ on $s^\perp$. This recovers excess $1/2$. The proof below constructs a dependent distribution $\lambda$ with a strictly smaller spectral second moment. The construction depends only on $p$, not on the geometry $G$.
 
 \section{The Antithetic Pair Certificate}\label{sec:certificate}
 
-We prove Theorem~\ref{thm:atomic}. Write the support as
-$x_1,\ldots,x_m$, with positive masses $p_1,\ldots,p_m$. Center and scale so
-that
+We prove Theorem~\ref{thm:atomic}. Write the support as $x_1,\ldots,x_m$, with positive masses $p_1,\ldots,p_m$. Center and scale so that
 \begin{equation}\label{eq:normalization}
  \sum_i p_i x_i=0,
  \qquad
  \sum_i p_i\|x_i\|^2=1.
 \end{equation}
-It is enough to construct a distribution on pairs whose expected squared
-midpoint is at most $C_m$. Some pair then attains the same bound.
+It is enough to construct a distribution on pairs whose expected squared midpoint is at most $C_m$. Some pair then attains the same bound.
 
 \subsection{A dominant atom}
 
-Suppose $p_j\geq1/4$ for some $j$. Consider the following distribution on
-unordered pairs:
+Suppose $p_j\geq1/4$ for some $j$. Consider the following distribution on unordered pairs:
 \begin{align}\label{eq:star}
  \Pr\{(j,j)\}&=\frac{4p_j-1}{3},\\
  \Pr\{(i,j)\}&=\frac{4p_i}{3},\qquad i\ne j.
 \end{align}
-The probabilities are nonnegative and sum to one. If $M$ denotes the midpoint
-of the sampled pair, then
+The probabilities are nonnegative and sum to one. If $M$ denotes the midpoint of the sampled pair, then
 \begin{align*}
  3\E\|M\|^2
  &=(4p_j-1)\|x_j\|^2
    +\sum_{i\ne j}p_i\|x_i+x_j\|^2\\
  &=\sum_i p_i\|x_i\|^2=1.
 \end{align*}
-The second equality uses $\sum_{i\ne j}p_i x_i=-p_jx_j$. Thus a dominant
-atom always yields a pair with squared midpoint norm at most $1/3$. The
-threshold $1/4$ is exact because it is precisely where the loop probability
-in \eqref{eq:star} becomes nonnegative.
+The second equality uses $\sum_{i\ne j}p_i x_i=-p_jx_j$. Thus a dominant atom always yields a pair with squared midpoint norm at most $1/3$. The threshold $1/4$ is exact because it is precisely where the loop probability in \eqref{eq:star} becomes nonnegative.
 
 \subsection{Diffuse masses}
 
@@ -272,48 +173,23 @@ For each distinct pair, set
 \begin{equation}\label{eq:complete-coupling}
  w_{ij}=4(p_i a_j+p_j a_i),\qquad i<j.
 \end{equation}
-All weights are positive. They also sum to one. To see this, let
-$A=\sum_i a_i$ and $U=\sum_i p_i a_i$. The identities
-\[
- A=\frac{C(p)S}{1+S},
- \qquad
- U=\frac{C(p)(S-1)}{4(1+S)}
-\]
-give $\sum_{i<j}w_{ij}=4(A-U)=1$.
+All weights are positive. They also sum to one. To see this, let $A=\sum_i a_i$ and $U=\sum_i p_i a_i$. The identities \[ A=\frac{C(p)S}{1+S}, \qquad U=\frac{C(p)(S-1)}{4(1+S)} \] give $\sum_{i<j}w_{ij}=4(A-U)=1$.
 
 \begin{lemma}[Exact diffuse certificate]\label{lem:diffuse}
-If a distinct pair $(i,j)$ is drawn with probabilities
-\eqref{eq:complete-coupling}, then its midpoint $M$ satisfies
+If a distinct pair $(i,j)$ is drawn with probabilities \eqref{eq:complete-coupling}, then its midpoint $M$ satisfies
 \begin{equation}\label{eq:exact-certificate}
  \E\|M\|^2=C(p)\sum_i p_i\|x_i\|^2=C(p).
 \end{equation}
 \end{lemma}
 
 \paragraph{Proof.}
-Let $q=(e_i+e_j)/2$ encode the sampled midpoint, so $M=\sum_i q_i x_i$.
-Write $Q=\E[qq^\top]$. The off-diagonal entries from
-\eqref{eq:complete-coupling} are
-\[
- Q_{ij}=p_i a_j+a_i p_j.
-\]
-The degree identity
-\[
- \frac14\sum_{j\ne i}w_{ij}=C(p)p_i+2p_i a_i
-\]
-follows from
-$a_i(1-4p_i)=p_i(C(p)-A)$. Hence
+Let $q=(e_i+e_j)/2$ encode the sampled midpoint, so $M=\sum_i q_i x_i$. Write $Q=\E[qq^\top]$. The off-diagonal entries from \eqref{eq:complete-coupling} are \[ Q_{ij}=p_i a_j+a_i p_j. \] The degree identity \[ \frac14\sum_{j\ne i}w_{ij}=C(p)p_i+2p_i a_i \] follows from $a_i(1-4p_i)=p_i(C(p)-A)$. Hence
 \begin{equation}\label{eq:Qidentity}
  Q=C(p)\operatorname{diag}(p)+pa^\top+ap^\top.
 \end{equation}
-If $G_{ij}=\langle x_i,x_j\rangle$, centering gives $Gp=0$. Therefore
-\[
- \E\|M\|^2=\operatorname{tr}(GQ)
- =C(p)\operatorname{tr}(G\operatorname{diag}(p))=C(p).
-\]
-\hfill$\square$
+If $G_{ij}=\langle x_i,x_j\rangle$, centering gives $Gp=0$. Therefore \[ \E\|M\|^2=\operatorname{tr}(GQ) =C(p)\operatorname{tr}(G\operatorname{diag}(p))=C(p). \] \hfill$\square$
 
-It remains to maximize $C(p)$. The function $t\mapsto t/(1-4t)$ is strictly
-convex on $(0,1/4)$. Jensen's inequality gives
+It remains to maximize $C(p)$. The function $t\mapsto t/(1-4t)$ is strictly convex on $(0,1/4)$. Jensen's inequality gives
 \begin{equation}\label{eq:jensen}
  S\geq\frac{m}{m-4}.
 \end{equation}
@@ -323,16 +199,12 @@ Since $(S+1)/(3S+1)$ decreases with $S$,
  \frac{m/(m-4)+1}{3m/(m-4)+1}
  =\frac{m-2}{2(m-1)}.
 \end{equation}
-Equality in \eqref{eq:jensen} holds exactly at $p_i=1/m$. Combining the
-dominant and diffuse cases proves the upper bound in
-Theorem~\ref{thm:atomic}.
+Equality in \eqref{eq:jensen} holds exactly at $p_i=1/m$. Combining the dominant and diffuse cases proves the upper bound in Theorem~\ref{thm:atomic}.
 
-The diffuse certificate is not merely an upper bound. It solves the fixed
-mass-profile minimax problem exactly.
+The diffuse certificate is not merely an upper bound. It solves the fixed mass-profile minimax problem exactly.
 
 \begin{theorem}[Exact diffuse mass profile]\label{thm:profile}
-Fix positive masses $p_1,\ldots,p_m<1/4$ that sum to one. Over all centered
-Hilbert-space configurations with unit variance,
+Fix positive masses $p_1,\ldots,p_m<1/4$ that sum to one. Over all centered Hilbert-space configurations with unit variance,
 \begin{equation}\label{eq:profile}
  R(p)=C(p)=
  \frac{1+\sum_i p_i/(1-4p_i)}
@@ -342,8 +214,7 @@ The supremum is attained in dimension $m-1$ by an explicit simplex.
 \end{theorem}
 
 \paragraph{Proof.}
-Lemma~\ref{lem:diffuse} proves $R(p)\leq C(p)$. For the reverse inequality,
-write $C=C(p)$ and define
+Lemma~\ref{lem:diffuse} proves $R(p)\leq C(p)$. For the reverse inequality, write $C=C(p)$ and define
 \begin{equation}\label{eq:profile-diagonal}
  b_i=C+\frac{3C-1}{1-4p_i}.
 \end{equation}
@@ -351,179 +222,74 @@ Let $G$ have diagonal $G_{ii}=b_i$ and, for $i\ne j$,
 \begin{equation}\label{eq:profile-gram}
  G_{ij}=2C-\frac{b_i+b_j}{2}.
 \end{equation}
-First, $\sum_i p_i b_i=1$. This follows from
-$3C-1=2/(3S+1)$ and the definition of $C$. The identity
-\[
- (1-4p_i)b_i=4C(1-p_i)-1
-\]
-then gives $Gp=0$ by a row-wise calculation.
+First, $\sum_i p_i b_i=1$. This follows from $3C-1=2/(3S+1)$ and the definition of $C$. The identity \[ (1-4p_i)b_i=4C(1-p_i)-1 \] then gives $Gp=0$ by a row-wise calculation.
 
-The matrix is positive semidefinite. Indeed, for every $y$ with
-$\sum_i y_i=0$, Equations~\eqref{eq:profile-diagonal} and
-\eqref{eq:profile-gram} give
+The matrix is positive semidefinite. Indeed, for every $y$ with $\sum_i y_i=0$, Equations~\eqref{eq:profile-diagonal} and \eqref{eq:profile-gram} give
 \begin{equation}\label{eq:profile-psd}
  y^\top Gy=2\sum_i(b_i-C)y_i^2>0.
 \end{equation}
-For an arbitrary $z$, set $y=z-(\sum_i z_i)p$. Then $\sum_i y_i=0$, and
-$z^\top Gz=y^\top Gy$ because $Gp=0$. Hence $G\succeq0$, with rank $m-1$.
-It is therefore the Gram matrix of vectors $x_1,\ldots,x_m$ with weighted
-mean zero and weighted variance one.
+For an arbitrary $z$, set $y=z-(\sum_i z_i)p$. Then $\sum_i y_i=0$, and $z^\top Gz=y^\top Gy$ because $Gp=0$. Hence $G\succeq0$, with rank $m-1$. It is therefore the Gram matrix of vectors $x_1,\ldots,x_m$ with weighted mean zero and weighted variance one.
 
-Every repeated pair has cost $b_i\geq C$. By
-\eqref{eq:profile-gram}, every distinct pair has cost exactly
-\[
- \frac{G_{ii}+G_{jj}+2G_{ij}}4=C.
-\]
-Thus the best pair in this configuration has cost $C$, proving
-\eqref{eq:profile}. \hfill$\square$
+Every repeated pair has cost $b_i\geq C$. By \eqref{eq:profile-gram}, every distinct pair has cost exactly \[ \frac{G_{ii}+G_{jj}+2G_{ij}}4=C. \] Thus the best pair in this configuration has cost $C$, proving \eqref{eq:profile}. \hfill$\square$
 
-Theorem~\ref{thm:profile} describes a continuum of least favorable
-nonregular simplices. As a mass approaches $1/4$ from below, its squared
-vertex norm approaches $3$ under our normalization and $C(p)$ approaches
-$1/3$. At uniform masses, the Gram matrix becomes the regular-simplex matrix
-and $C(p)$ reaches the diffuse maximum in \eqref{eq:Cbound}.
+Theorem~\ref{thm:profile} describes a continuum of least favorable nonregular simplices. As a mass approaches $1/4$ from below, its squared vertex norm approaches $3$ under our normalization and $C(p)$ approaches $1/3$. At uniform masses, the Gram matrix becomes the regular-simplex matrix and $C(p)$ reaches the diffuse maximum in \eqref{eq:Cbound}.
 
 \section{Sharpness and Extremizers}\label{sec:sharpness}
 
 The lower bounds are elementary and expose why both branches are necessary.
 
 \paragraph{Rare-point obstruction.}
-Let $X$ equal zero with probability $3/4$ and one with probability $1/4$.
-Its mean is $1/4$ and its variance is $3/16$. Every average of two support
-points lies in $\{0,1/2,1\}$. Its squared distance from the mean is at least
-$1/16$, giving normalized excess $1/3$. The finite multiset
-$\{0,0,0,1\}$ realizes this example exactly.
+Let $X$ equal zero with probability $3/4$ and one with probability $1/4$. Its mean is $1/4$ and its variance is $3/16$. Every average of two support points lies in $\{0,1/2,1\}$. Its squared distance from the mean is at least $1/16$, giving normalized excess $1/3$. The finite multiset $\{0,0,0,1\}$ realizes this example exactly.
 
 \paragraph{Simplex obstruction.}
-Let $x_1,\ldots,x_m$ be the unit vertices of a regular $(m-1)$-simplex,
-so $\sum_i x_i=0$ and
-$\langle x_i,x_j\rangle=-1/(m-1)$ for $i\ne j$. Under uniform masses the
-variance is one. Repeating a vertex gives squared norm one, while every
-distinct midpoint has squared norm
-\[
- \frac14\left(2-\frac{2}{m-1}\right)
- =\frac{m-2}{2(m-1)}.
-\]
-This proves sharpness of Theorem~\ref{thm:atomic}. With $m=d+1$, it gives the
-second lower bound in Theorem~\ref{thm:main}.
+Let $x_1,\ldots,x_m$ be the unit vertices of a regular $(m-1)$-simplex, so $\sum_i x_i=0$ and $\langle x_i,x_j\rangle=-1/(m-1)$ for $i\ne j$. Under uniform masses the variance is one. Repeating a vertex gives squared norm one, while every distinct midpoint has squared norm \[ \frac14\left(2-\frac{2}{m-1}\right) =\frac{m-2}{2(m-1)}. \] This proves sharpness of Theorem~\ref{thm:atomic}. With $m=d+1$, it gives the second lower bound in Theorem~\ref{thm:main}.
 
 The diffuse proof also characterizes the high-dimensional extremizer.
 
 \begin{proposition}[Uniqueness on a minimal support]\label{prop:unique}
-Fix $m\geq5$. If a centered distribution on exactly $m$ atoms attains the
-constant $(m-2)/(2(m-1))$ in Theorem~\ref{thm:atomic}, then its masses are
-uniform and its support is a regular $(m-1)$-simplex, up to scaling and an
-isometry on its span.
+Fix $m\geq5$. If a centered distribution on exactly $m$ atoms attains the constant $(m-2)/(2(m-1))$ in Theorem~\ref{thm:atomic}, then its masses are uniform and its support is a regular $(m-1)$-simplex, up to scaling and an isometry on its span.
 \end{proposition}
 
 \paragraph{Proof.}
-The dominant certificate is strictly smaller than the claimed value. In the
-diffuse case, equality in \eqref{eq:jensen} forces uniform masses. The weights
-$w_{ij}$ then become uniform over distinct pairs. Since their average cost
-equals the minimum, all distinct midpoint costs are equal. Normalize the
-variance to one and write $b_i=\|x_i\|^2$. Centering, equal midpoint costs,
-and $\sum_i b_i=m$ imply
-\[
- 0=\left\langle x_i,\sum_jx_j\right\rangle
- =\frac{m-4}{2}(1-b_i).
-\]
-Thus every $b_i=1$, after which all off-diagonal inner products equal
-$-1/(m-1)$. \hfill$\square$
+The dominant certificate is strictly smaller than the claimed value. In the diffuse case, equality in \eqref{eq:jensen} forces uniform masses. The weights $w_{ij}$ then become uniform over distinct pairs. Since their average cost equals the minimum, all distinct midpoint costs are equal. Normalize the variance to one and write $b_i=\|x_i\|^2$. Centering, equal midpoint costs, and $\sum_i b_i=m$ imply \[ 0=\left\langle x_i,\sum_jx_j\right\rangle =\frac{m-4}{2}(1-b_i). \] Thus every $b_i=1$, after which all off-diagonal inner products equal $-1/(m-1)$. \hfill$\square$
 
 \section{Consequences}\label{sec:consequences}
 
-The proof provides more information than the worst-case constant. For any
-variance-minimizing representation with masses $p$, it gives an explicit
-certificate. A mass at least $1/4$ guarantees excess $1/3$. If all masses are
-smaller, the sharper data-dependent value is
+The proof provides more information than the worst-case constant. For any variance-minimizing representation with masses $p$, it gives an explicit certificate. A mass at least $1/4$ guarantees excess $1/3$. If all masses are smaller, the sharper data-dependent value is
 \begin{equation}\label{eq:adaptive}
  C(p)=\frac{1+\sum_i p_i/(1-4p_i)}
  {1+3\sum_i p_i/(1-4p_i)}.
 \end{equation}
-This interpolates continuously between the dominant-atom boundary and the
-uniform-simplex maximum. It also supplies a direct witness distribution over
-good pairs, rather than only a minimax value.
+This interpolates continuously between the dominant-atom boundary and the uniform-simplex maximum. It also supplies a direct witness distribution over good pairs, rather than only a minimax value.
 
-Lemma~\ref{lem:reduction} gives an intrinsic-dimension version. If a dataset
-has affine dimension $r$, regardless of its ambient dimension, two examples
-achieve
+Lemma~\ref{lem:reduction} gives an intrinsic-dimension version. If a dataset has affine dimension $r$, regardless of its ambient dimension, two examples achieve
 \begin{equation}\label{eq:intrinsic}
  \frac{L_D^*(2)}{L_D^*}
  \leq1+\max\left\{\frac13,\frac{r-1}{2r}\right\}.
 \end{equation}
-The bound is sharp for every $r$. The exact factor approaches $3/2$ from
-below, quantifying the finite-dimensional improvement over independent
-sampling.
+The bound is sharp for every $r$. The exact factor approaches $3/2$ from below, quantifying the finite-dimensional improvement over independent sampling.
 
-The certificate has a simple semidefinite interpretation. For masses $p$,
-let $\Sigma_p=\operatorname{diag}(p)-pp^\top$. A distribution on empirical
-two-point frequencies $q$ proves a uniform geometric bound $C$ whenever
-\[
- \E[(q-p)(q-p)^\top]\preceq C\Sigma_p.
-\]
-The star construction attains equality with $C=1/3$. In the diffuse case,
-Equation~\eqref{eq:Qidentity} is the same certificate after quotienting out
-the centered direction $p$. This explains why the pair distribution can be
-chosen without knowing the geometry of the support.
+The certificate has a simple semidefinite interpretation. For masses $p$, let $\Sigma_p=\operatorname{diag}(p)-pp^\top$. A distribution on empirical two-point frequencies $q$ proves a uniform geometric bound $C$ whenever \[ \E[(q-p)(q-p)^\top]\preceq C\Sigma_p. \] The star construction attains equality with $C=1/3$. In the diffuse case, Equation~\eqref{eq:Qidentity} is the same certificate after quotienting out the centered direction $p$. This explains why the pair distribution can be chosen without knowing the geometry of the support.
 
-The exact profile also gives a stability statement for the diffuse branch.
-For $m\geq5$, strict convexity in \eqref{eq:jensen} implies that any sequence
-of diffuse mass vectors whose minimax values approach
-$(m-2)/(2(m-1))$ must converge, up to permutation, to the uniform vector.
-Together with Proposition~\ref{prop:unique}, near-worst minimal-support
-instances must approach the regular simplex in both masses and Gram geometry.
+The exact profile also gives a stability statement for the diffuse branch. For $m\geq5$, strict convexity in \eqref{eq:jensen} implies that any sequence of diffuse mass vectors whose minimax values approach $(m-2)/(2(m-1))$ must converge, up to permutation, to the uniform vector. Together with Proposition~\ref{prop:unique}, near-worst minimal-support instances must approach the regular simplex in both masses and Gram geometry.
 
 \section{Relation to Approximate Carath\'eodory Theory}
 
-Approximate Carath\'eodory theorems replace a convex combination by a sparse
-or equal-weight combination. Maurey's empirical method gives the familiar
-$O(1/\sqrt n)$ Euclidean error by independent sampling. Later work gives
-constructive algorithms, tight dimension-free rates, and discrepancy-based
-extensions \citep{mirrokni2017tight,combettes2023revisiting,
-reis2022discrepancy}.
+Approximate Carath\'eodory theorems replace a convex combination by a sparse or equal-weight combination. Maurey's empirical method gives the familiar $O(1/\sqrt n)$ Euclidean error by independent sampling. Later work gives constructive algorithms, tight dimension-free rates, and discrepancy-based extensions \citep{mirrokni2017tight,combettes2023revisiting, reis2022discrepancy}.
 
-The normalization is decisive. Those results control error by a containing
-radius or diameter. Our denominator is the variance under the particular
-barycentric weights, which can be much smaller than the squared radius when a
-distant vertex has low mass. The rare-point obstruction in
-Section~\ref{sec:sharpness} is exactly this gap.
+The normalization is decisive. Those results control error by a containing radius or diameter. Our denominator is the variance under the particular barycentric weights, which can be much smaller than the squared radius when a distant vertex has low mass. The rare-point obstruction in Section~\ref{sec:sharpness} is exactly this gap.
 
-The closest result is the sharp dimension-dependent theorem of
-\citet{tinarrage2026sharp}. For a simplex in the unit ball, the worst squared
-distance to a two-fold barycenter is $(d-1)/(2d)$ for $d\geq2$, attained by a
-regular simplex. That theorem settles the radius-normalized problem through a
-Gram-matrix optimization. It does not imply a variance-normalized bound. Our
-formula shows precisely what changes after variance normalization. The same
-regular simplex remains extremal for $d\geq4$, while a one-dimensional rare
-point dominates in dimensions at most three.
+The closest result is the sharp dimension-dependent theorem of \citet{tinarrage2026sharp}. For a simplex in the unit ball, the worst squared distance to a two-fold barycenter is $(d-1)/(2d)$ for $d\geq2$, attained by a regular simplex. That theorem settles the radius-normalized problem through a Gram-matrix optimization. It does not imply a variance-normalized bound. Our formula shows precisely what changes after variance normalization. The same regular simplex remains extremal for $d\geq4$, while a one-dimensional rare point dominates in dimensions at most three.
 
-Regular simplices also uniquely maximize variance among distributions with a
-fixed support diameter \citep{lim2022variance}. That isodiametric result varies
-the distribution and support under a diameter constraint. Here the variance
-is fixed, pair midpoints are the admissible decisions, and the extremizer
-changes with dimension.
+Regular simplices also uniquely maximize variance among distributions with a fixed support diameter \citep{lim2022variance}. That isodiametric result varies the distribution and support under a diameter constraint. Here the variance is fixed, pair midpoints are the admissible decisions, and the extremizer changes with dimension.
 
-Regular-grid rounding on the standard simplex has also been solved for broad
-classes of coordinate norms \citep{bomze2014rounding}. In our formulation,
-the norm on barycentric error is induced by the unknown support Gram matrix,
-while the normalization is induced by its weighted trace. Proposition
-\ref{prop:minimax} makes this adversarial metric explicit.
+Regular-grid rounding on the standard simplex has also been solved for broad classes of coordinate norms \citep{bomze2014rounding}. In our formulation, the norm on barycentric error is induced by the unknown support Gram matrix, while the normalization is induced by its weighted trace. Proposition \ref{prop:minimax} makes this adversarial metric explicit.
 
 \section{Discussion}
 
-Theorem~\ref{thm:main} resolves one complete column of the data-selection
-table and gives a short analytic proof of its previously known planar entry.
-The proof identifies a dominant-or-diffuse dichotomy. Dominant atoms are
-handled by a star coupling. Diffuse masses are handled by a complete-graph
-coupling, whose worst case follows from scalar convexity.
+Theorem~\ref{thm:main} resolves one complete column of the data-selection table and gives a short analytic proof of its previously known planar entry. The proof identifies a dominant-or-diffuse dichotomy. Dominant atoms are handled by a star coupling. Diffuse masses are handled by a complete-graph coupling, whose worst case follows from scalar convexity.
 
-For budgets larger than two, the admissible averages form a finer simplex
-grid. The same second-moment viewpoint leads to distributions over count
-vectors, but pair weights are replaced by higher-order inclusion
-probabilities. Determining their sharp variance-normalized constants remains
-open. The present result suggests that any full formula must retain at least
-two competing families: rare lower-dimensional distributions and balanced
-regular simplices.
+For budgets larger than two, the admissible averages form a finer simplex grid. The same second-moment viewpoint leads to distributions over count vectors, but pair weights are replaced by higher-order inclusion probabilities. Determining their sharp variance-normalized constants remains open. The present result suggests that any full formula must retain at least two competing families: rare lower-dimensional distributions and balanced regular simplices.
 
 \balance
 \bibliography{references}
@@ -531,8 +297,6 @@ regular simplices.
 \appendix
 \newpage
 \section{Pointers to the Supplement}
-The supplement gives a standalone proof of the atomic theorem, a matrix form
-of both antithetic certificates, the intrinsic-dimension reduction, and
-additional details on sharpness and equality.
+The supplement gives a standalone proof of the atomic theorem, a matrix form of both antithetic certificates, the intrinsic-dimension reduction, and additional details on sharpness and equality.
 
 \end{document}
